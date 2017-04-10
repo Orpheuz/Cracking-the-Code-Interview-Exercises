@@ -1,26 +1,26 @@
-package com.vitorteixeira;
+package com.vitorteixeira.stacksqueueslinkedlists;
 
 /**
  * Created by vitor on 28-03-2017.
  */
 
-public class Node<T> {
+public class LinkedListNode<T> {
     protected T data;
-    protected Node next = null;
+    protected LinkedListNode next = null;
 
-    Node(T data) {
+    LinkedListNode(T data) {
         this.data = data;
     }
 
     void appendTo(T d) {
-        Node app = new Node(d);
+        LinkedListNode app = new LinkedListNode(d);
         app.next = this.next;
         this.next = app;
     }
 
     void appendToEnd(T d) {
-        Node end = new Node(d);
-        Node n = this;
+        LinkedListNode end = new LinkedListNode(d);
+        LinkedListNode n = this;
 
         while(n.next != null)
             n = n.next;

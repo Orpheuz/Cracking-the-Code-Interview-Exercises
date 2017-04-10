@@ -1,4 +1,4 @@
-package com.vitorteixeira;
+package com.vitorteixeira.treesandgraphs;
 
 /**
  * Created by vitor on 02-04-2017.

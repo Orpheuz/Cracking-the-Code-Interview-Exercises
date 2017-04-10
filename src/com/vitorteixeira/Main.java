@@ -1,23 +1,17 @@
 package com.vitorteixeira;
 
+import com.vitorteixeira.treesandgraphs.BinaryTreeNode;
+import com.vitorteixeira.treesandgraphs.Graph;
+import com.vitorteixeira.treesandgraphs.GraphNode;
+import com.vitorteixeira.treesandgraphs.Graph_Exercises;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Main {
 
     public static void main(String[] args) {
-        MinHeap minHeap = new MinHeap();
-
-        minHeap.insert(10);
-        System.out.println(minHeap.getMin());
-        minHeap.insert(6);
-        System.out.println(minHeap.getMin());
-        minHeap.removeMin();
-        System.out.println(minHeap.getMin());
-        minHeap.insert(12);
-        System.out.println(minHeap.getMin());
-        minHeap.insert(3);
-        System.out.println(minHeap.getMin());
-        minHeap.insert(2);
-        minHeap.removeMin();
-        System.out.println(minHeap.getMin());
-        minHeap.insert(32);
+        ArrayList<Integer> arr = new ArrayList<>(Arrays.asList(1,2,3,4,5,6,7,8,9));
+        BinaryTreeNode root = Graph_Exercises.getBTfromArray(arr);
     }
 }

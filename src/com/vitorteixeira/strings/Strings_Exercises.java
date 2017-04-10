@@ -1,4 +1,4 @@
-package com.vitorteixeira;
+package com.vitorteixeira.strings;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.vitorteixeira;
+package com.vitorteixeira.stacksqueueslinkedlists;
 
 import java.util.EmptyStackException;
 
@@ -6,10 +6,10 @@ import java.util.EmptyStackException;
  * Created by vitor on 28-03-2017.
  */
 public class Stack<T> {
-    private Node<T> top = null;
+    private LinkedListNode<T> top = null;
 
     public void push(T value) {
-        Node<T> n = new Node<>(value);
+        LinkedListNode<T> n = new LinkedListNode<>(value);
         if(top == null)
             top = n;
         else {

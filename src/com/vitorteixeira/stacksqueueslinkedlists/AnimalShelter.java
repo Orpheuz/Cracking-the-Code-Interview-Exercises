@@ -1,4 +1,4 @@
-package com.vitorteixeira;
+package com.vitorteixeira.stacksqueueslinkedlists;
 
 import java.util.NoSuchElementException;
 
@@ -49,28 +49,28 @@ class Cat extends Animal {
 public class AnimalShelter {
 
     private int order = 0;
-    private Node<Dog> dogHead = null;
-    private Node<Dog> dogTail = null;
-    private Node<Cat> catHead = null;
-    private Node<Cat> catTail = null;
+    private LinkedListNode<Dog> dogHead = null;
+    private LinkedListNode<Dog> dogTail = null;
+    private LinkedListNode<Cat> catHead = null;
+    private LinkedListNode<Cat> catTail = null;
 
     public void enqueue(Animal a) {
         a.setQueueNumber(order);
         if (a instanceof Dog) {
             if (dogHead == null) {
-                dogHead = new Node(a);
+                dogHead = new LinkedListNode(a);
                 dogTail = dogHead;
             } else {
-                dogTail.next = new Node(a);
+                dogTail.next = new LinkedListNode(a);
                 dogTail = dogTail.next;
             }
         }
         if (a instanceof Cat) {
             if (catHead == null) {
-                catHead = new Node(a);
+                catHead = new LinkedListNode(a);
                 catTail = catHead;
             } else {
-                catTail.next = new Node(a);
+                catTail.next = new LinkedListNode(a);
                 catTail = catTail.next;
             }
         }

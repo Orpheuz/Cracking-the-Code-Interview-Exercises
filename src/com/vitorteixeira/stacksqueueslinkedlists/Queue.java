@@ -1,4 +1,4 @@
-package com.vitorteixeira;
+package com.vitorteixeira.stacksqueueslinkedlists;
 
 import java.util.NoSuchElementException;
 
@@ -6,8 +6,8 @@ import java.util.NoSuchElementException;
  * Created by vitor on 28-03-2017.
  */
 public class Queue<T> {
-    private Node<T> front = null;
-    private Node<T> back = null;
+    private LinkedListNode<T> front = null;
+    private LinkedListNode<T> back = null;
 
     public boolean isEmpty() {
         return front == null;
@@ -20,7 +20,7 @@ public class Queue<T> {
     }
 
     public void add(T value) {
-        Node<T> n = new Node<>(value);
+        LinkedListNode<T> n = new LinkedListNode<>(value);
         if(isEmpty()) {
             front = n;
             back = n;

@@ -1,4 +1,4 @@
-package com.vitorteixeira;
+package com.vitorteixeira.treesandgraphs;
 
 import java.util.NoSuchElementException;
 
@@ -15,7 +15,7 @@ public class MinHeap {
     public BinaryTreeNode root;
     public int numNodes = 0;
 
-    int getMin() {
+    public int getMin() {
         return root.data;
     }
 

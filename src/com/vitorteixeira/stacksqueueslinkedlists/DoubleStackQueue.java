@@ -1,4 +1,4 @@
-package com.vitorteixeira;
+package com.vitorteixeira.stacksqueueslinkedlists;
 
 /**
  * Created by vitor on 30-03-2017.
