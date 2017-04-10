@@ -101,13 +101,13 @@ public class MinHeap {
         if(right == null && left == null)
             return;
 
-        if(right == null || right.data < left.data) {
+        if(left == null || right.data < left.data) {
             if(node.data > right.data) {
                 swapValues(node, right);
                 removeBubbleDown(right);
             }
         }
-        else if(left == null || left.data < right.data) {
+        else if(right == null || left.data < right.data) {
             if(node.data > left.data) {
                 swapValues(node, left);
                 removeBubbleDown(left);
