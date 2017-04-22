@@ -8,17 +8,17 @@ public class LinkedListNode<T> {
     protected T data;
     protected LinkedListNode next = null;
 
-    LinkedListNode(T data) {
+    public LinkedListNode(T data) {
         this.data = data;
     }
 
-    void appendTo(T d) {
+    public void appendTo(T d) {
         LinkedListNode app = new LinkedListNode(d);
         app.next = this.next;
         this.next = app;
     }
 
-    void appendToEnd(T d) {
+    public void appendToEnd(T d) {
         LinkedListNode end = new LinkedListNode(d);
         LinkedListNode n = this;
 
