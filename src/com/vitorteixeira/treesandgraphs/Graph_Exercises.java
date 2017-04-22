@@ -160,7 +160,7 @@ public class Graph_Exercises {
         return isBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
-    public static boolean isBST(BinaryTreeNode node, int min, int max) {
+    private static boolean isBST(BinaryTreeNode node, int min, int max) {
         if(node == null)
             return true;
 
@@ -172,4 +172,34 @@ public class Graph_Exercises {
             return true;
         else return false;
     }
+
+    /**
+     * This method returns the successor of any given
+     * node in a BST
+     */
+    public static BinaryTreeNode getSuccessor(BinaryTreeNode node) {
+        if(node == null)
+            return null;
+
+        if(node.right != null)
+            return getLeftmost(node.right);
+        else {
+            BinaryTreeNode ancestor = node.parent;
+
+            // Go up until we find a parent that is greater than the node
+            while(ancestor != null && ancestor.data < node.data) {
+                ancestor = ancestor.parent;
+            }
+            return ancestor;
+        }
+    }
+
+    private static BinaryTreeNode getLeftmost(BinaryTreeNode node) {
+        if(node == null)
+            return null;
+        while(node.left != null)
+            node = node.left;
+        return node;
+    }
+
 }

@@ -19,10 +19,18 @@ public class Main {
         BinaryTreeNode b5 = new BinaryTreeNode(5);
         BinaryTreeNode b6 = new BinaryTreeNode(6);
 
-        b3.left = b1;
-        b3.right = b5;
-        b5.left = b4;
+        b4.left = b2;
+        b4.right = b5;
+        b2.left = b1;
+        b2.right = b3;
+        b5.right = b6;
 
-        System.out.println(Graph_Exercises.isBST(b3));
+        b2.parent = b4;
+        b1.parent = b2;
+        b3.parent = b2;
+        b5.parent = b4;
+        b6.parent = b5;
+
+        System.out.println(Graph_Exercises.getSuccessor(b3).data);
     }
 }
