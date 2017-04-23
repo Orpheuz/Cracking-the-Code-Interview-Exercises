@@ -6,31 +6,33 @@ import com.vitorteixeira.treesandgraphs.Graph;
 import com.vitorteixeira.treesandgraphs.GraphNode;
 import com.vitorteixeira.treesandgraphs.Graph_Exercises;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main {
 
     public static void main(String[] args) {
-        BinaryTreeNode b1 = new BinaryTreeNode(1);
-        BinaryTreeNode b2 = new BinaryTreeNode(2);
-        BinaryTreeNode b3 = new BinaryTreeNode(3);
-        BinaryTreeNode b4 = new BinaryTreeNode(4);
-        BinaryTreeNode b5 = new BinaryTreeNode(5);
-        BinaryTreeNode b6 = new BinaryTreeNode(6);
+        ArrayList<String> projs = new ArrayList<>(Arrays.asList("a","b","c","d","e","f","g"));
+        Graph_Exercises.Dependencies d1 = new Graph_Exercises.Dependencies(projs.get(5), projs.get(0));
+        Graph_Exercises.Dependencies d2 = new Graph_Exercises.Dependencies(projs.get(5), projs.get(1));
+        Graph_Exercises.Dependencies d3 = new Graph_Exercises.Dependencies(projs.get(5), projs.get(2));
+        Graph_Exercises.Dependencies d4 = new Graph_Exercises.Dependencies(projs.get(2), projs.get(0));
+        Graph_Exercises.Dependencies d5 = new Graph_Exercises.Dependencies(projs.get(1), projs.get(0));
+        Graph_Exercises.Dependencies d6 = new Graph_Exercises.Dependencies(projs.get(1), projs.get(4));
+        Graph_Exercises.Dependencies d7 = new Graph_Exercises.Dependencies(projs.get(0), projs.get(4));
+        Graph_Exercises.Dependencies d8 = new Graph_Exercises.Dependencies(projs.get(3), projs.get(6));
 
-        b4.left = b2;
-        b4.right = b5;
-        b2.left = b1;
-        b2.right = b3;
-        b5.right = b6;
 
-        b2.parent = b4;
-        b1.parent = b2;
-        b3.parent = b2;
-        b5.parent = b4;
-        b6.parent = b5;
-
-        System.out.println(Graph_Exercises.getSuccessor(b3).data);
+        ArrayList<Graph_Exercises.Dependencies> dependencies = new ArrayList<>();
+        dependencies.add(d1);
+        dependencies.add(d2);
+        dependencies.add(d3);
+        dependencies.add(d4);
+        dependencies.add(d5);
+        dependencies.add(d6);
+        dependencies.add(d7);
+        dependencies.add(d8);
+        System.out.println(Graph_Exercises.buildOrder(projs, dependencies));
     }
 }

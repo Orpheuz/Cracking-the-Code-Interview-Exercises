@@ -3,7 +3,8 @@ package com.vitorteixeira.treesandgraphs;
 import com.vitorteixeira.stacksqueueslinkedlists.LinkedListNode;
 import com.vitorteixeira.stacksqueueslinkedlists.Queue;
 
-import java.util.ArrayList;
+import java.lang.reflect.Array;
+import java.util.*;
 
 /**
  * Created by vitor on 10-04-2017.
@@ -202,4 +203,111 @@ public class Graph_Exercises {
         return node;
     }
 
+    /**
+     * Project dependency problem
+     * Given a list of projects and a list of dependencies
+     * figure out the build order for the given input
+     *
+     * Example:
+     *
+     * Input:
+     *  projects: a, b, c, d, e, f
+     *  dependencies: (a, d), (f, b), (b, d), (f, a), (d, c)
+     * Output: f, e, a, b, d, c
+     */
+    public static class Dependencies {
+        public String project;
+        public String dependent;
+
+        public Dependencies(String project, String dependent) {
+            this.project = project;
+            this.dependent = dependent;
+        }
+    }
+
+    public static ArrayList<String> buildOrder(ArrayList<String> projects, ArrayList<Dependencies> dependencies) {
+        Graph graph = new Graph();
+        ArrayList<String> buildOrder = new ArrayList<>();
+        // Construct graph for the given projects
+        for(String proj: projects) {
+            graph.nodes.add(new GraphNode(proj));
+        }
+
+        // Add the dependencies (connections) between the nodes
+        for(Dependencies dep: dependencies) {
+            GraphNode proj = getNode(dep.project, graph);
+            GraphNode depnd = getNode(dep.dependent, graph);
+           proj.children.add(depnd);
+        }
+
+        /**
+         * While there are nodes without dependencies
+         * add them to the build order since they can be built
+         * without screwing up other builds, then remove the
+         * dependencies from the graph
+         */
+        HashSet<String> computed = new HashSet<>();
+        ArrayList<GraphNode> noDepNodes = findNoDepNodes(dependencies, graph, computed);
+
+        while(noDepNodes != null) {
+            addToBuildOrder(buildOrder, noDepNodes);
+            removeEdgesFromNodes(noDepNodes);
+            addComputedNodesSet(noDepNodes, computed);
+            noDepNodes = findNoDepNodes(dependencies, graph, computed);
+        }
+
+        /**
+         * If there are two nodes with dependencies that can only
+         * mean that some nodes have circular dependencies and the
+         * build order is impossible to satisfy
+         */
+
+        if(computed.size() != projects.size())
+            return null;
+        else return buildOrder;
+    }
+
+    private static void addToBuildOrder(ArrayList<String> buildOrder, ArrayList<GraphNode> nodes) {
+        for(GraphNode node: nodes)
+            buildOrder.add(node.name);
+    }
+
+    private static void addComputedNodesSet(ArrayList<GraphNode> nodes, HashSet<String> computed) {
+        for(GraphNode node: nodes) {
+            computed.add(node.name);
+        }
+    }
+
+    private static GraphNode getNode(String proj, Graph g) {
+        for(GraphNode n: g.nodes) {
+            if(n.name == proj)
+                return n;
+        }
+        return null;
+    }
+
+    private static void removeEdgesFromNodes(ArrayList<GraphNode> nodes) {
+        for(GraphNode node : nodes) {
+            node.children = new ArrayList<>();
+        }
+    }
+
+    private static ArrayList<GraphNode> findNoDepNodes(ArrayList<Dependencies> dependencies, Graph g, HashSet<String> computed) {
+        ArrayList<GraphNode> projects = g.nodes;
+        HashMap<String, GraphNode> projSet = new HashMap<>();
+        for(GraphNode proj : projects) {
+            if(!computed.contains(proj.name))
+                projSet.put(proj.name, proj);
+        }
+        for(Dependencies dep: dependencies) {
+            if(!computed.contains(dep.project))
+                projSet.remove(dep.dependent);
+        }
+
+        projects = new ArrayList<>(projSet.values());
+
+        if(projects.isEmpty())
+            return null;
+        else return projects;
+    }
 }
